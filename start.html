@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html,body{height:100%;width:100%;background:rgba(0,0,0,.9);/*background:cover;*/position:relative;}
+			img{width:20px;height:20px;position:fixed;}
+		</style>
+	</head>
+	<body>
+	<!--	<img src="img/211.gif"/>-->
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tween.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/timeMove.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function starShow(){
+				this.oImg=document.createElement("img");
+				this.oImg.src="img/211.gif";
+				document.body.appendChild(this.oImg);
+			}
+			starShow.prototype.show=function(){
+				this.oImg.style.top=this.locaX+"px";
+				this.oImg.style.left=this.locaY+"px";
+				
+				return this;
+			}
+			starShow.prototype.localtion=function(){
+				this.locaX=this.sRan(innerWidth-50);
+				this.locaY=this.sRan(innerHeight-50);
+				return this;
+			}
+//			starShow.prototype.vor=function(){
+//				this.randomspeed=parseInt(this.sRan(1000)+1500);
+//				return this;
+//			}
+			starShow.prototype.sRan=function(num){
+				return parseInt(Math.random()*num);
+			}
+			starShow.prototype.speed=function(){
+				var This=this;
+				var speeds=parseInt(this.sRan(1000)+5000);
+			    this.oImg.timeSport({"left":this.locaX,"top":this.locaY,},speeds,"linear",function(){
+//			    	timeSport(This.oImg,{"left":This.locaX,"top":This.locaY,})
+					This.localtion().speed();
+			    });
+			}
+			for(var i=0;i<40;i++){
+				var start=new starShow();
+				start.localtion().show(); 
+				start.localtion().speed(); 
+			}
+
+			
+		</script>
+	</body>
+</html>
